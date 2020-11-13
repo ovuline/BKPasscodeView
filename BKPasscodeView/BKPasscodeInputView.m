@@ -341,56 +341,59 @@
     return UIInterfaceOrientationIsPortrait([[UIApplication sharedApplication] statusBarOrientation]) ? kLabelPasscodeSpacePortrait : kLabelPasscodeSpaceLandscape;
 }
 
-- (void)layoutSubviews
-{
-    [super layoutSubviews];
-    
+- (void)configureViews {
     // layout passcode control to center
     [self.passcodeField sizeToFit];
-    
+
     if ([self.passcodeField isKindOfClass:[UITextField class]]) {
         self.passcodeField.frame = CGRectMake(0, 0, self.frame.size.width - kTextLeftRightSpace * 2.0f, CGRectGetHeight(self.passcodeField.frame) + 10.0f);
     }
 
     self.passcodeField.center = CGPointMake(CGRectGetWidth(self.frame) * 0.5f, CGRectGetHeight(self.frame) * 0.5f);
-    
+
     CGFloat maxTextWidth = self.frame.size.width - (kTextLeftRightSpace * 2.0f);
     CGFloat labelPasscodeSpace = [self labelPasscodeSpace];
-    
+
     // layout title label
     _titleLabel.frame = CGRectMake(kTextLeftRightSpace, 0, maxTextWidth, self.frame.size.height);
     [_titleLabel sizeToFit];
-    
+
     CGRect rect = _titleLabel.frame;
     rect.origin.x = floorf((self.frame.size.width - CGRectGetWidth(rect)) * 0.5f);
     rect.origin.y = CGRectGetMinY(self.passcodeField.frame) - labelPasscodeSpace - CGRectGetHeight(_titleLabel.frame);
 
     _titleLabel.frame = rect;
-    
+
     // layout message label
     if (!_messageLabel.hidden) {
         _messageLabel.frame = CGRectMake(kTextLeftRightSpace, CGRectGetMaxY(self.passcodeField.frame) + labelPasscodeSpace, maxTextWidth, self.frame.size.height);
         [_messageLabel sizeToFit];
-        
+
         rect = _messageLabel.frame;
         rect.origin.x = floorf((self.frame.size.width - CGRectGetWidth(rect)) * 0.5f);
         _messageLabel.frame = rect;
     }
-    
+
     // layout error message label
     if (!_errorMessageLabel.hidden) {
         _errorMessageLabel.frame = CGRectMake(0, CGRectGetMaxY(self.passcodeField.frame) + labelPasscodeSpace,
                                               maxTextWidth - kErrorMessageLeftRightPadding * 2.0f,
                                               self.frame.size.height);
         [_errorMessageLabel sizeToFit];
-        
+
         rect = _errorMessageLabel.frame;
         rect.size.width += (kErrorMessageLeftRightPadding * 2.0f);
         rect.size.height += (kErrorMessageTopBottomPadding * 2.0f);
         rect.origin.x = floorf((self.frame.size.width - rect.size.width) * 0.5f);
-        
+
         _errorMessageLabel.frame = rect;
     }
+}
+
+- (void)layoutSubviews
+{
+    [super layoutSubviews];
+    [self configureViews];
 }
 
 #pragma mark - UIResponder

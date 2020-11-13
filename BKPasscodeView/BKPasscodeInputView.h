@@ -34,6 +34,9 @@ typedef enum : NSUInteger {
 @property (nonatomic, strong) NSString                  *passcode;
 
 @property (nonatomic, strong, readonly) UIControl       *passcodeField;
+@property (nonatomic, strong, readonly) UILabel         *titleLabel;
+@property (nonatomic, strong, readonly) UILabel         *messageLabel;
+@property (nonatomic, strong, readonly) UILabel         *errorMessageLabel;
 
 @property (nonatomic, strong) UIFont                    *titleFont;
 @property (nonatomic, strong) UIColor                   *titleColor;
@@ -46,6 +49,9 @@ typedef enum : NSUInteger {
 + (void)configureTitleLabel:(UILabel *)aLabel;
 + (void)configureMessageLabel:(UILabel *)aLabel;
 + (void)configureErrorMessageLabel:(UILabel *)aLabel;
+
+/// Override to change the position of the labels
+- (void)configureViews;
 
 @end
 
