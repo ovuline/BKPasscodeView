@@ -11,13 +11,6 @@
 #import "AFViewShaker.h"
 #import "BKPasscodeUtils.h"
 
-typedef enum : NSUInteger {
-    BKPasscodeViewControllerStateUnknown,
-    BKPasscodeViewControllerStateCheckPassword,
-    BKPasscodeViewControllerStateInputPassword,
-    BKPasscodeViewControllerStateReinputPassword
-} BKPasscodeViewControllerState;
-
 #define kBKPasscodeOneMinuteInSeconds           (60)
 #define kBKPasscodeDefaultKeyboardHeight        (216)
 
@@ -25,7 +18,6 @@ typedef enum : NSUInteger {
 
 @property (nonatomic, strong) BKShiftingView                *shiftingView;
 
-@property (nonatomic) BKPasscodeViewControllerState         currentState;
 @property (nonatomic, strong) NSString                      *oldPasscode;
 @property (nonatomic, strong) NSString                      *theNewPasscode;
 @property (nonatomic, strong) NSTimer                       *lockStateUpdateTimer;
