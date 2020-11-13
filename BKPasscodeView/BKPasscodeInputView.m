@@ -223,9 +223,6 @@
     self.messageLabel.text = message;
     self.messageLabel.hidden = NO;
     
-    self.errorMessageLabel.text = nil;
-    self.errorMessageLabel.hidden = YES;
-    
     [self setNeedsLayout];
 }
 
@@ -238,9 +235,6 @@
 {
     self.errorMessageLabel.text = errorMessage;
     self.errorMessageLabel.hidden = NO;
-    
-    self.messageLabel.text = nil;
-    self.messageLabel.hidden = YES;
     
     [self setNeedsLayout];
 }
