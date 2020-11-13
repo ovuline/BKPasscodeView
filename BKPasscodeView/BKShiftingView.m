@@ -71,6 +71,7 @@
     } completion:^(BOOL finished) {
         
         [oldView removeFromSuperview];
+        [view becomeFirstResponder];
         
     }];
     
