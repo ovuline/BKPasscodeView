@@ -61,6 +61,8 @@ typedef enum : NSUInteger {
  */
 - (void)startTouchIDAuthenticationIfPossible:(void(^)(BOOL prompted))aCompletionBlock;
 
+- (void)updatePasscodeInputViewTitle:(BKPasscodeInputView *)passcodeInputView;
+
 @end
 
 @protocol BKPasscodeViewControllerDelegate <NSObject>

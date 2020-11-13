@@ -297,8 +297,6 @@
     }];
 }
 
-#pragma mark - Private methods
-
 - (void)updatePasscodeInputViewTitle:(BKPasscodeInputView *)passcodeInputView
 {
     switch (self.currentState) {
@@ -309,7 +307,7 @@
                 passcodeInputView.title = NSLocalizedStringFromTable(@"Enter your passcode", @"BKPasscodeView", @"암호 입력");
             }
             break;
-            
+
         case BKPasscodeViewControllerStateInputPassword:
             if (self.type == BKPasscodeViewControllerChangePasscodeType) {
                 passcodeInputView.title = NSLocalizedStringFromTable(@"Enter your new passcode", @"BKPasscodeView", @"새로운 암호 입력");
@@ -317,15 +315,17 @@
                 passcodeInputView.title = NSLocalizedStringFromTable(@"Enter a passcode", @"BKPasscodeView", @"암호 입력");
             }
             break;
-            
+
         case BKPasscodeViewControllerStateReinputPassword:
             passcodeInputView.title = NSLocalizedStringFromTable(@"Re-enter your passcode", @"BKPasscodeView", @"암호 재입력");
             break;
-            
+
         default:
             break;
     }
 }
+
+#pragma mark - Private methods
 
 - (void)showFailedAttemptsCount:(NSUInteger)failCount inputView:(BKPasscodeInputView *)aInputView
 {
