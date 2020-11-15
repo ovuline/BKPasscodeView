@@ -325,8 +325,6 @@
     }
 }
 
-#pragma mark - Private methods
-
 - (void)showFailedAttemptsCount:(NSUInteger)failCount inputView:(BKPasscodeInputView *)aInputView
 {
     if (failCount == 0) {
@@ -337,6 +335,8 @@
         aInputView.errorMessage = [NSString stringWithFormat:NSLocalizedStringFromTable(@"%d Failed Passcode Attempts", @"BKPasscodeView", @"%d번의 암호 입력 시도 실패"), failCount];
     }
 }
+
+#pragma mark - Private methods
 
 - (void)showTouchIDSwitchView
 {
@@ -401,9 +401,9 @@
                         
                         [self updatePasscodeInputViewTitle:newPasscodeInputView];
                         [self.shiftingView showView:newPasscodeInputView withDirection:BKShiftingDirectionForward];
-                        
+
                         [self.passcodeInputView becomeFirstResponder];
-                        
+
                     } else {
                         
                         [self.delegate passcodeViewController:self didFinishWithPasscode:passcode];
