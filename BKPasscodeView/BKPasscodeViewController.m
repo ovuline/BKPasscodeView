@@ -136,7 +136,9 @@ typedef enum : NSUInteger {
         [self startTouchIDAuthenticationIfPossible];
     }
     
-    [self.passcodeInputView becomeFirstResponder];
+    if (!UIAccessibilityIsVoiceOverRunning()) {
+        [self.passcodeInputView becomeFirstResponder];
+    }
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -409,9 +411,11 @@ typedef enum : NSUInteger {
                         
                         [self updatePasscodeInputViewTitle:newPasscodeInputView];
                         [self.shiftingView showView:newPasscodeInputView withDirection:BKShiftingDirectionForward];
-                        
-                        [self.passcodeInputView becomeFirstResponder];
-                        
+
+                        if (!UIAccessibilityIsVoiceOverRunning()) {
+                            [self.passcodeInputView becomeFirstResponder];
+                        }
+
                     } else {
                         
                         [self.delegate passcodeViewController:self didFinishWithPasscode:passcode];
@@ -471,7 +475,9 @@ typedef enum : NSUInteger {
                 [self updatePasscodeInputViewTitle:newPasscodeInputView];
                 [self.shiftingView showView:newPasscodeInputView withDirection:BKShiftingDirectionForward];
                 
-                [self.passcodeInputView becomeFirstResponder];
+                if (!UIAccessibilityIsVoiceOverRunning()) {
+                    [self.passcodeInputView becomeFirstResponder];
+                }
             }
             
             break;
@@ -500,7 +506,9 @@ typedef enum : NSUInteger {
                 
                 [self.shiftingView showView:newPasscodeInputView withDirection:BKShiftingDirectionBackward];
                 
-                [self.passcodeInputView becomeFirstResponder];
+                if (!UIAccessibilityIsVoiceOverRunning()) {
+                    [self.passcodeInputView becomeFirstResponder];
+                }
             }
             break;
         }
