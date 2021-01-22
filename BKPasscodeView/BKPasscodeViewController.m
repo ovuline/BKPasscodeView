@@ -488,7 +488,7 @@
                 
                 [self updatePasscodeInputViewTitle:newPasscodeInputView];
                 
-                newPasscodeInputView.message = NSLocalizedStringFromTable(@"Passcodes did not match.\nTry again.", @"BKPasscodeView", @"암호가 일치하지 않습니다.\n다시 시도하십시오.");
+                newPasscodeInputView.message = self.passcodesDidNotMatchString;
                 
                 [self.shiftingView showView:newPasscodeInputView withDirection:BKShiftingDirectionBackward];
                 
