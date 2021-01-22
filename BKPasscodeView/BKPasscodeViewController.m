@@ -11,13 +11,6 @@
 #import "AFViewShaker.h"
 #import "BKPasscodeUtils.h"
 
-typedef enum : NSUInteger {
-    BKPasscodeViewControllerStateUnknown,
-    BKPasscodeViewControllerStateCheckPassword,
-    BKPasscodeViewControllerStateInputPassword,
-    BKPasscodeViewControllerStateReinputPassword
-} BKPasscodeViewControllerState;
-
 #define kBKPasscodeOneMinuteInSeconds           (60)
 #define kBKPasscodeDefaultKeyboardHeight        (216)
 
@@ -25,7 +18,6 @@ typedef enum : NSUInteger {
 
 @property (nonatomic, strong) BKShiftingView                *shiftingView;
 
-@property (nonatomic) BKPasscodeViewControllerState         currentState;
 @property (nonatomic, strong) NSString                      *oldPasscode;
 @property (nonatomic, strong) NSString                      *theNewPasscode;
 @property (nonatomic, strong) NSTimer                       *lockStateUpdateTimer;
@@ -305,8 +297,6 @@ typedef enum : NSUInteger {
     }];
 }
 
-#pragma mark - Private methods
-
 - (void)updatePasscodeInputViewTitle:(BKPasscodeInputView *)passcodeInputView
 {
     switch (self.currentState) {
@@ -317,7 +307,7 @@ typedef enum : NSUInteger {
                 passcodeInputView.title = NSLocalizedStringFromTable(@"Enter your passcode", @"BKPasscodeView", @"암호 입력");
             }
             break;
-            
+
         case BKPasscodeViewControllerStateInputPassword:
             if (self.type == BKPasscodeViewControllerChangePasscodeType) {
                 passcodeInputView.title = NSLocalizedStringFromTable(@"Enter your new passcode", @"BKPasscodeView", @"새로운 암호 입력");
@@ -325,11 +315,11 @@ typedef enum : NSUInteger {
                 passcodeInputView.title = NSLocalizedStringFromTable(@"Enter a passcode", @"BKPasscodeView", @"암호 입력");
             }
             break;
-            
+
         case BKPasscodeViewControllerStateReinputPassword:
             passcodeInputView.title = NSLocalizedStringFromTable(@"Re-enter your passcode", @"BKPasscodeView", @"암호 재입력");
             break;
-            
+
         default:
             break;
     }
@@ -345,6 +335,8 @@ typedef enum : NSUInteger {
         aInputView.errorMessage = [NSString stringWithFormat:NSLocalizedStringFromTable(@"%d Failed Passcode Attempts", @"BKPasscodeView", @"%d번의 암호 입력 시도 실패"), failCount];
     }
 }
+
+#pragma mark - Private methods
 
 - (void)showTouchIDSwitchView
 {
@@ -409,9 +401,9 @@ typedef enum : NSUInteger {
                         
                         [self updatePasscodeInputViewTitle:newPasscodeInputView];
                         [self.shiftingView showView:newPasscodeInputView withDirection:BKShiftingDirectionForward];
-                        
+
                         [self.passcodeInputView becomeFirstResponder];
-                        
+
                     } else {
                         
                         [self.delegate passcodeViewController:self didFinishWithPasscode:passcode];
