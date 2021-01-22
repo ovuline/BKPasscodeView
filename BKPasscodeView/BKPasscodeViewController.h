@@ -37,7 +37,7 @@ typedef enum : NSUInteger {
 @property (nonatomic) UIKeyboardType                            keyboardType;
 @property (nonatomic, strong, readonly) BKPasscodeInputView     *passcodeInputView;
 @property (nonatomic, strong) BKTouchIDManager                  *touchIDManager;
-@property (nonatomic, copy) NSString                            *passcodesDoNotMatchString;
+@property (nonatomic, copy) NSString                            *passcodesDidNotMatchString;
 
 /**
  * Customize passcode input view

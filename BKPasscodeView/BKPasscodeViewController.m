@@ -488,7 +488,7 @@
                 
                 [self updatePasscodeInputViewTitle:newPasscodeInputView];
                 
-                newPasscodeInputView.message = self.passcodesDoNotMatchString;
+                newPasscodeInputView.message = self.passcodesDidNotMatchString;
                 
                 [self.shiftingView showView:newPasscodeInputView withDirection:BKShiftingDirectionBackward];
                 
