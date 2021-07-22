@@ -10,6 +10,12 @@ let package = Package(
             targets: ["BKPasscodeView"]
         ),
     ],
+    dependencies: [
+        .package(
+            url: "https://github.com/ovuline/AFViewShaker",
+            .branch("spm")
+        )
+    ],
     targets: [
         .target(
             name: "BKPasscodeView",
